@@ -37,6 +37,7 @@ Technically, nothing is mandatory, but you will of course want to change the hos
 |Option|Description|
 |---|---|
 |`hosts`|Object array. Here's the important one. Each host must have _at least_ an `ip`; a friendly name is optional. You can also set a `timeout` per host - useful if you have a device that is slow to respond (default is 1 second).<br/>`{ name: "Friendly device name", ip: "127.0.0.1", timeout: 5 }`
+|`group`|String. Use this if you need more than one instance of the module running - each module will need its own group name.
 |`pingInterval`|Integer (in **seconds**). Set the time in seconds between each round of pings. Please consider what you are pinging before setting a really short interval.<br/>_Default: 15_
 |`loadDelay`|Integer (in **seconds**). Set a delay when the module first starts before firing off any ping requests.<br/>_Default: 0_
 |`templateName`|String. Specify the name of the Nunjucks template to use (.njk extension not required). [See below](#Templates) for more info.<br/>_Default: default_
