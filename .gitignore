@@ -1,0 +1,4 @@
+# Ignore user templates (except the default)
+/templates/**
+!/templates/default.css
+!/templates/default.njk

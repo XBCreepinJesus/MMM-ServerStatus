@@ -2,7 +2,7 @@ var NodeHelper = require("node_helper");
 var ping = require("ping");
 
 module.exports = NodeHelper.create({
-	start: function () {},
+	start: function () { },
 
 	socketNotificationReceived: function (notification, data) {
 		if (notification === "MMM-SERVERSTATUS_PINGS_FOR_" + data.group.toUpperCase()) {
