@@ -1,0 +1,26 @@
+{
+  "name": "mmm-serverstatus",
+  "version": "1.0.1",
+  "description": "A module for MagicMirror² to check the up/down status of servers/devices on your network.",
+  "main": "MMM-ServerStatus.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XBCreepinJesus/MMM-ServerStatus.git"
+  },
+  "keywords": [
+    "magicmirror",
+    "magicmirror2",
+    "ping",
+    "server",
+    "status"
+  ],
+  "author": "CreepinJesus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XBCreepinJesus/MMM-ServerStatus/issues"
+  },
+  "homepage": "https://github.com/XBCreepinJesus/MMM-ServerStatus#readme",
+  "dependencies": {
+    "ping": ">=0.4.0"
+  }
+}

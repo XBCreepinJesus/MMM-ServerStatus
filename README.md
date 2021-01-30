@@ -4,13 +4,16 @@ A module for MagicMirror² to check the up/down status of servers/devices on you
 
 ## Installation
 
+**Note** - this module uses the Ping node module (https://github.com/danielzzz/node-ping). Running the commands below will install `ping` and any other dependencies into the module's directory.
+
 Install using Git into the modules directory of your MagicMirror installation:
 
 ```bash
 git clone https://github.com/XBCreepinJesus/MMM-ServerStatus.git
+npm install
 ```
 
-**Note** - this module uses the Ping node module (https://github.com/danielzzz/node-ping). To install it on your MagicMirror setup, run `npm install ping` from inside the `node_modules` directory.
+
 
 Add it to your config.js modules section like any other module:
 
