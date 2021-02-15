@@ -1,0 +1,16 @@
+{% if pingResults %}
+	<div class="light small">
+
+		{% for host in pingResults %}
+			{% if host.isAlive %}
+				<span style="color: {{ config.upColor }};" class="fas fa-{{ config.upSymbol }}"></span> {{ host.name }} {{ config.upText }}
+			{% else %}
+				<span style="color: {{ config.downColor }};" class="fas fa-{{ config.downSymbol }}"></span> {{ host.name }} {{ config.downText }}
+			{% endif %}
+			<br />
+		{% endfor %}
+
+	</div>
+{% else %}
+	<div class="dimmed xsmall">Loading...</div>
+{% endif %}

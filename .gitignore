@@ -2,6 +2,7 @@
 /templates/**
 !/templates/default.css
 !/templates/default.njk
+!/templates/simpleList.njk
 
 # Dependencies
 /node_modules

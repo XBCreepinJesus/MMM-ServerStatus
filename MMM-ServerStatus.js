@@ -31,16 +31,16 @@ Module.register("MMM-ServerStatus", {
 		// *1000 for easier config
 		setTimeout(() => {
 			Log.info("Starting pings");
-			this.PingHosts();
-			setInterval(() => this.PingHosts(), this.config.pingInterval * 1000);
+			this.pingHosts();
+			setInterval(() => this.pingHosts(), this.config.pingInterval * 1000);
 		}, this.config.loadDelay * 1000);
 	},
 
 	// Trigger ping requests (see node-helper.js)
 	// Sends the hosts list as the payload
-	PingHosts: function () {
+	pingHosts: function () {
 		this.sendSocketNotification(
-			"MMM-SERVERSTATUS_PINGS_FOR_" + this.config.group.toUpperCase(),
+			"MMM-SERVERSTATUS_PING",
 			{
 				group: this.config.group,
 				hosts: this.config.hosts
@@ -49,15 +49,9 @@ Module.register("MMM-ServerStatus", {
 	},
 
 	socketNotificationReceived: function (notification, data) {
-		if (
-			notification ===
-			"MMM-SERVERSTATUS_REPLIES_FROM_" +
-			this.config.group.toUpperCase()
-		) {
-			if (data.group === this.config.group) {
-				this.pingResults = data.results;
-				this.updateDom();
-			}
+		if (notification === "MMM-SERVERSTATUS_PONG_" + this.config.group) {
+			this.pingResults = data.pingResults;
+			this.updateDom();
 		}
 	},
 
