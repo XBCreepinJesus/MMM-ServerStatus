@@ -3,7 +3,7 @@
 	<!-- show table -->
 	<table class="small {{ config.tableClass }}">
 		{% for host in pingResults %}
-			<tr class="hostRow">
+			<tr class="hostRow bright">
 				<td class="">
 					{{ host.name if host.name else host.ip }}
 				</td>
