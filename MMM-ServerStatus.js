@@ -27,21 +27,33 @@ Module.register("MMM-ServerStatus", {
 	},
 
 	start: function () {
-		// Send notification to helper to start sending pings for this group after the initial load delay
+		// Schedule first ping(s)
 		setTimeout(() => {
-			this.sendSocketNotification("MMM-SERVERSTATUS_START_PINGS", {
-				group: this.config.group,
-				hosts: this.config.hosts,
-				interval: this.config.pingInterval
-			})
+			this.getPings();
 		}, this.config.loadDelay * 1000);
+	},
+
+	getPings() {
+		this.sendSocket
+		// Send notification and config to request pings from node helper
+		this.sendSocketNotification("MMM-SERVERSTATUS_GET_PINGS", {
+			group: this.config.group,
+			hosts: this.config.hosts,
+		})
 	},
 
 	socketNotificationReceived: function (notification, data) {
 		// On receiving pings, show the results (if they're for this group)
-		if (notification === "MMM-SERVERSTATUS_PONG_" + this.config.group) {
+		if (notification === "MMM-SERVERSTATUS_PINGS_" + this.config.group) {
 			this.pingResults = data.pingResults;
+
+			// Refresh module display
 			this.updateDom();
+
+			// Schedule next update
+			setTimeout(() => {
+				this.getPings();
+			}, this.config.pingInterval * 1000);
 		}
 	},
 
