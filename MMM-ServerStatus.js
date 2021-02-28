@@ -27,31 +27,33 @@ Module.register("MMM-ServerStatus", {
 	},
 
 	start: function () {
-		// Start pings after delay of [config.loadDelay] then at intervals of [config.pingInterval]
-		// *1000 for easier config
+		// Schedule first ping(s)
 		setTimeout(() => {
-			Log.info("Starting pings");
-			this.pingHosts();
-			setInterval(() => this.pingHosts(), this.config.pingInterval * 1000);
+			this.getPings();
 		}, this.config.loadDelay * 1000);
 	},
 
-	// Trigger ping requests (see node-helper.js)
-	// Sends the hosts list as the payload
-	pingHosts: function () {
-		this.sendSocketNotification(
-			"MMM-SERVERSTATUS_PING",
-			{
-				group: this.config.group,
-				hosts: this.config.hosts
-			}
-		);
+	getPings() {
+		this.sendSocket
+		// Send notification and config to request pings from node helper
+		this.sendSocketNotification("MMM-SERVERSTATUS_GET_PINGS", {
+			group: this.config.group,
+			hosts: this.config.hosts,
+		})
 	},
 
 	socketNotificationReceived: function (notification, data) {
-		if (notification === "MMM-SERVERSTATUS_PONG_" + this.config.group) {
+		// On receiving pings, show the results (if they're for this group)
+		if (notification === "MMM-SERVERSTATUS_PINGS_" + this.config.group) {
 			this.pingResults = data.pingResults;
+
+			// Refresh module display
 			this.updateDom();
+
+			// Schedule next update
+			setTimeout(() => {
+				this.getPings();
+			}, this.config.pingInterval * 1000);
 		}
 	},
 

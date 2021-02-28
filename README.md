@@ -10,6 +10,7 @@ Install using Git into the modules directory of your MagicMirror installation:
 
 ```bash
 git clone https://github.com/XBCreepinJesus/MMM-ServerStatus.git
+cd MMM-ServerStatus/
 npm install
 ```
 
