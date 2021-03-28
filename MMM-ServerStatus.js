@@ -40,6 +40,11 @@ Module.register("MMM-ServerStatus", {
 			group: this.config.group,
 			hosts: this.config.hosts,
 		})
+
+		// Schedule next update
+		setTimeout(() => {
+			this.getPings();
+		}, this.config.pingInterval * 1000);
 	},
 
 	socketNotificationReceived: function (notification, data) {
@@ -49,11 +54,6 @@ Module.register("MMM-ServerStatus", {
 
 			// Refresh module display
 			this.updateDom();
-
-			// Schedule next update
-			setTimeout(() => {
-				this.getPings();
-			}, this.config.pingInterval * 1000);
 		}
 	},
 
